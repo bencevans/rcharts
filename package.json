@@ -23,5 +23,9 @@
     "charts"
   ],
   "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
 }
