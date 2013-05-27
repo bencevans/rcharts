@@ -7,7 +7,6 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var _ = require('underscore');
-var redis = require('redis').createClient();
 
 /**
  * Redis/Cache
