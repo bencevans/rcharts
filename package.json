@@ -1,0 +1,27 @@
+{
+  "name": "rcharts",
+  "version": "0.0.0",
+  "description": "Reddit Music Charts",
+  "main": "app.js",
+  "dependencies": {
+    "request": "~2.21.0",
+    "redis": "~0.8.3",
+    "express": "~3.2.5",
+    "underscore": "~1.4.4",
+    "cachey": "~0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "music",
+    "reddit",
+    "sub-reddit",
+    "youtube",
+    "charts"
+  ],
+  "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
+  "license": "MIT"
+}
