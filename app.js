@@ -28,7 +28,7 @@ var cachey = require('cachey')({redisClient:redis});
  */
 
 app.get('/', function(req, res, next) {
-  res.redirect('/r/folk.json');
+  res.send('/r/&lt;sub reddit&gt;.json<br/>e.g <a href="/r/folk.json">/r/folk.json</a>');
 });
 
 app.get('/r/:subreddit.json', function(req, res, next) {
