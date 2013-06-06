@@ -31,7 +31,7 @@ module.exports.xml = function(req, res, next) {
       '<playlist version="1" xmlns="http://xspf.org/ns/0/">',
       '<title>r/' + req.params.subreddit + '</title>', '<trackList>'];
     for (var i = 0; i < results.length; i++) {
-      output.push('<track><creator>' + results[i].artist + '</creator><title>' + results[i].title + '</title><location>' + results[i].url + '</location></track>');
+      output.push('<track><creator>' + results[i].artist + '</creator><title>' + results[i].title + '</title></track>');
     };
     output.push('</trackList>');
     output.push('</playlist>');
