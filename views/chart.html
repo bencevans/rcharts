@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>/r/{{subreddit}} Music Charts</title>
+
+  <style type="text/css">
+  * {
+    margin: 0;
+  }
+
+  body {
+    width: 700px;
+    margin:50px auto;
+    font-family: 'Verdana';
+  }
+
+  .actions {
+    margin: 10px 0;
+  }
+
+  .results {
+    width: 100%;  
+  }
+
+  .track-artwork {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+  }
+
+  .track-title, .track-artist {
+    padding: 10px;
+  }
+
+  .formats {
+    margin: 10px 0;
+    text-align: left;
+    opacity: 0.7
+  }
+
+  img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 64px;
+   margin-top: 0;
+   margin-left: 0;
+  }
+  </style>
+</head>
+<body>
+  <h1>/r/{{subreddit}} Music Charts</h1>
+  <div class="actions">
+    Listen on: Tomahawk, Toma.hk or Youtube.
+  </div>
+  <table class="results">
+    {{#results}}
+    <tr class="track">
+      <td class="track-artwork" style="width:64px;height: 64px;">
+        <div style="position: relative;width:64px;height: 64px;overflow: hidden;background-image: url('/img/genericart.png');">
+          <img class="track-artwork-image" src="/i/{{escape artist}}.png" style="min-width: 100%;min-height: 100%;">
+        </div>
+      </td>
+      <td class="track-title">{{title}}</td>
+      <td class="track-artist">{{artist}}</td>
+    </tr>
+    {{/results}}
+  </table>
+  <p class="formats">Other Formats: <a href="/r/{{subreddit}}.json">JSON</a>, <a href="/r/{{subreddit}}.xml">XML</a> &amp; <a href="/r/{{subreddit}}.xspf">XSPF</a></p>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript">
+  $('img').load(function() {
+    var e = $(this).parent();
+    var ie = $(this);
+    ie.css({
+      'margin-left': - (ie.width() - e.width()) / 2
+    });
+  });
+  </script>
+</body>
+</html>

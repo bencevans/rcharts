@@ -3,7 +3,8 @@
  * Module Dependencies
  */
 
-var rcharts = require('../lib/rcharts');
+var rcharts = require('../lib/rcharts'),
+    _ = require('underscore');
 
 
 /**
@@ -14,15 +15,28 @@ var rcharts = require('../lib/rcharts');
  * GET /r/:subreddit
  */
 module.exports = function(req, res, next) {
-
+  rcharts(req.params.subreddit, function(err, results) {
+    if(err) return next(err);
+    res.render('chart', {
+      subreddit: req.params.subreddit,
+      layout: false,
+      results: results
+    });
+  });
 }
 
 /**
  * GET /r/:subreddit.xml
- * GET /r/:subreddit.xspf
  */
 module.exports.xml = function(req, res, next) {
-  res.type('text/xml');
+  res.redirect('/r/' + req.params.subreddit + '.xspf');
+}
+
+/**
+ * GET /r/:subreddit.xspf
+ */
+module.exports.xspf = function(req, res, next) {
+  res.type('application/xspf+xml');
 
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
@@ -37,7 +51,6 @@ module.exports.xml = function(req, res, next) {
     output.push('</playlist>');
     res.send(output.join('\n'));
   });
-
 }
 
 /**
@@ -47,5 +60,25 @@ module.exports.json = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
     res.send({error: false, results: results });
+  });
+}
+
+/**
+ * GET /r/:subreddit.jspf
+ */
+module.exports.jspf = function(req, res, next) {
+  rcharts(req.params.subreddit, function(err, results) {
+    if(err) return next(err);
+    res.send({
+      playlist: {
+        title: 'r/' + req.params.subreddit,
+        track: [_.map(results, function(t) {
+          return {
+            title: t.title,
+            creator: t.artist,
+          }
+        })]
+      }
+    });
   });
 }

@@ -9,7 +9,8 @@
     "express": "~3.2.5",
     "underscore": "~1.4.4",
     "cachey": "~0.3.2",
-    "requiredir": "~1.0.6"
+    "requiredir": "~1.0.6",
+    "hbs": "~2.3.0"
   },
   "devDependencies": {},
   "scripts": {
