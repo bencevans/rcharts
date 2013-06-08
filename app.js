@@ -26,6 +26,7 @@ app.configure(function() {
   app.set('views', __dirname + '/views');
   app.engine('html', hbs.__express);
   app.set('view engine', 'html');
+  app.use(express.bodyParser());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -35,7 +36,11 @@ app.configure(function() {
  */
 
 app.get('/', function(req, res, next) {
-  res.send('/r/&lt;sub reddit&gt;.json<br/>e.g <a href="/r/folk.json">/r/folk.json</a>');
+  res.render('index');
+});
+
+app.post('/', function(req, res, next) {
+  res.redirect('/r/' + req.body.subreddit);
 });
 
 app.get('/r/:subreddit.json', routes.charts.json);
