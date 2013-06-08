@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>rcharts - Reddit Music Charts</title>
+  <style type="text/css">
+
+  * {
+    margin: 0;
+  }
+
+  body {
+    width: 700px;
+    margin:50px auto;
+    font-family: 'Verdana';
+  }
+
+  form {
+    margin: 10px 0;
+  }
+  </style>
+</head>
+<body>
+  <h2>What's your subreddit?</h2>
+  <form action="/" method="post" onSubmit="submit();">
+    <label>/r/</label><input type="text" name="subreddit" id="input-subreddit"><input type="submit" value="Go">
+  </form>
+  <ul>
+    <li><a href="/r/IndieFolk">IndieFolk</a></li>
+    <li><a href="/r/Folk">Folk</a></li>
+    <li><a href="/r/Rock">Rock</a></li>
+    <li><a href="/r/Alternative">Alternative</a></li>
+    <li><a href="/r/ElectroSwing">ElectroSwing</a></li>
+    <li><a href="/r/Reggae">Reggae</a></li>
+    <li><a href="/r/Dub">Dub</a></li>
+  </ul>
+  <script type="text/javascript">
+  function submit() {
+    var i = document.getElementById('input-subreddit');
+    alert(i.value);
+    return false;
+  }
+  </script>
+</body>
+</html>
