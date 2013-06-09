@@ -22,7 +22,7 @@ function xmlEscape(str) {
  */
 module.exports = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
-    if(err && err.message.match(/200/)) return next();
+    if(err && err.message && err.message.match(/200/)) return next();
     if(err) return next(err);
     res.render('chart', {
       subreddit: req.params.subreddit,
