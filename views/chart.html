@@ -8,6 +8,7 @@
   }
 
   body {
+    font-size: 16px;
     width: 700px;
     margin:50px auto;
     font-family: 'Verdana';
@@ -37,13 +38,22 @@
     opacity: 0.7
   }
 
-  img {
+  .track-artwork img {
    position: absolute;
    top: 0;
    left: 0;
    height: 64px;
    margin-top: 0;
    margin-left: 0;
+  }
+
+  .source-image {
+    height: 16px;
+    display:inline;
+    position: relative;
+    top:2px;
+    margin: 0 2px;
+
   }
   </style>
 </head>
@@ -60,7 +70,7 @@
           <img class="track-artwork-image" src="/i/{{escape artist}}.png" style="min-width: 100%;min-height: 100%;">
         </div>
       </td>
-      <td class="track-title">{{title}}</td>
+      <td class="track-title"><a href="{{url}}">{{title}}<img class="source-image" src="/img/{{source}}.png"></a> </td>
       <td class="track-artist">{{artist}}</td>
     </tr>
     {{/results}}
