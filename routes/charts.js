@@ -5,14 +5,9 @@
 
 var rcharts = require('../lib/rcharts'),
     _ = require('underscore'),
-    libxml = require('libxmljs');
-
-/**
- * XML Escape Helper
- */
-function xmlEscape(str) {
-  return str.replace('"', '&quot;').replace('\'',  '&apos;').replace('&', '&amp;').replace('<', '&lt;').replace('>',  '&gt;');
-}
+    libxml = require('libxmljs'),
+    async = require('async'),
+    soundcloud = require('../lib/soundcloud');
 
 /**
  * Routes
@@ -49,22 +44,40 @@ module.exports.xspf = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
 
-    var doc = new libxml.Document();
-    var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/'})
+    async.map(results, function(track, done) {
+      if(track.url.match(/soundcloud/)) {
+        soundcloud.resolveStreamURL(track.url, function(err, location) {
+          track.location = location;
+          done();
+        });
+      } else {
+        done();
+      }
+    }, function() {
+
+      var doc = new libxml.Document();
+      var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/'})
       .node('title', 'r/' + req.params.subreddit)
       .parent()
       .node('trackList');
 
-    for (var i = 0; i < results.length; i++) {
-      curser.node('track')
-      .node('creator', results[i].artist)
-      .parent()
-      .node('title', results[i].title)
-      .parent()
-      .parent();
-    };
+      for (var i = 0; i < results.length; i++) {
+        curser.node('track')
+        .node('creator', results[i].artist)
+        .parent()
+        .node('title', results[i].title)
+        curser.parent();
 
-    res.send(doc.toString());
+        if(results[i].location) {
+          curser.node('location', results[i].location)
+          .parent();
+        }
+
+        curser.parent();
+      };
+
+      res.send(doc.toString());
+    });
   });
 }
 
