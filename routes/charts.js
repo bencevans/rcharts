@@ -4,7 +4,8 @@
  */
 
 var rcharts = require('../lib/rcharts'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    libxml = require('libxmljs');
 
 /**
  * XML Escape Helper
@@ -48,15 +49,22 @@ module.exports.xspf = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
 
-    var output = ['<?xml version="1.0" encoding="UTF-8"?>',
-      '<playlist version="1" xmlns="http://xspf.org/ns/0/">',
-      '  <title>r/' + req.params.subreddit + '</title>', '  <trackList>'];
+    var doc = new libxml.Document();
+    var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/'})
+      .node('title', 'r/' + req.params.subreddit)
+      .parent()
+      .node('trackList');
+
     for (var i = 0; i < results.length; i++) {
-      output.push('    <track>\n      <creator>' + xmlEscape(results[i].artist) + '</creator>\n      <title>' + xmlEscape(results[i].title) + '</title>\n    </track>');
+      curser.node('track')
+      .node('creator', results[i].artist)
+      .parent()
+      .node('title', results[i].title)
+      .parent()
+      .parent();
     };
-    output.push('  </trackList>');
-    output.push('</playlist>');
-    res.send(output.join('\n'));
+
+    res.send(doc.toString());
   });
 }
 
