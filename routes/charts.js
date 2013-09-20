@@ -87,9 +87,9 @@ module.exports.xspf = function(req, res, next) {
 module.exports.json = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
-    res.send({error: false, results: results });
+    res.jsonp({error: false, results: results });
   });
-}
+};
 
 /**
  * GET /r/:subreddit.jspf
