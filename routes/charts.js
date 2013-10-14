@@ -26,14 +26,14 @@ module.exports = function(req, res, next) {
       results: results
     });
   });
-}
+};
 
 /**
  * GET /r/:subreddit.xml
  */
 module.exports.xml = function(req, res, next) {
   res.redirect('/r/' + req.params.subreddit + '.xspf');
-}
+};
 
 /**
  * GET /r/:subreddit.xspf
@@ -65,7 +65,7 @@ module.exports.xspf = function(req, res, next) {
         curser.node('track')
         .node('creator', results[i].artist)
         .parent()
-        .node('title', results[i].title)
+        .node('title', results[i].title);
         curser.parent();
 
         if(results[i].location) {
@@ -74,12 +74,12 @@ module.exports.xspf = function(req, res, next) {
         }
 
         curser.parent();
-      };
+      }
 
       res.send(doc.toString());
     });
   });
-}
+};
 
 /**
  * GET /r/:subreddit.json
@@ -87,7 +87,7 @@ module.exports.xspf = function(req, res, next) {
 module.exports.json = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
     if(err) return next(err);
-    res.jsonp({error: false, results: results });
+    res.jsonp({ id: req.params.subreddit, tracks: results});
   });
 };
 
@@ -104,9 +104,9 @@ module.exports.jspf = function(req, res, next) {
           return {
             title: t.title,
             creator: t.artist,
-          }
+          };
         })]
       }
     });
   });
-}
+};

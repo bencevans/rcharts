@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit Music Charts</title>
+  <style type="text/css">
+  html, body {
+    font-family:Helvetica, arial, freesans, clean, sans-serif;
+    color: #111;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    margin: 0px 0px 5px 0;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .sidebar {
+    float:left;
+    width: 250px;
+    border-right: 1px solid #ccc;
+    height: 100%;
+  }
+
+  .subreddits {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .subreddits li:nth-of-type(odd) a {
+    background-color: #eee;
+  }
+
+  .subreddits li a {
+    display: block;
+    padding: 5px 10px;;
+    color: #111;
+    height: 20px;
+  }
+
+  .header {
+    display: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .main {
+    margin-left: 251px;
+  }
+
+  table {
+    marign: 0;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+
+  tr {
+    padding: 10px;
+    marign:0;
+  }
+
+  tr:nth-of-type(odd) {
+    background-color: #eee;
+  }
+
+  td {
+    height: 40px;
+    padding: 10px;
+    margin:0;
+  }
+
+  a {
+    color: #111;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+  </div>
+  <div class="main">
+
+  </div>
+  <script type="text/html" id="template-sidebar">
+  <h1 class="header">Reddit Charts</h1>
+    <div class="scrollcontent">
+    <ul class="subreddits">
+    <% _.each(charts, function(subreddit, index) { %>
+    <li><a href="/r/<%= subreddit %>">r/<%= subreddit %></a></li>
+    <% }); %>
+    </ul>
+  </div>
+  </script>
+  <script type="text/html" id="template-chart">
+  <h1 class="header">/r/<%= id %></h1>
+  <div class="scrollcontent">
+  <table>
+  <tbody>
+  <% _.each(tracks, function(track, index) { %>
+  <tr>
+    <td style="font-weight: bold;text-align: center;"><%= index + 1 %></td>
+    <td style="background-image:url('/i/<%= track.artist %>.png');width: 40px;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;"></td>
+    <td><a href="<%= track.url %>"><%= track.title %></a></td>
+    <td><a href="http://last.fm/artist/<%= track.artist %>"><%= track.artist %></a></td>
+  </tr>
+  <% }); %>
+  </tbody>
+  </table>
+  </div>
+  </script>
+  <script data-main="/js/main.js" src="/js/components/requirejs/require.js"></script>
+</body>
+</html>
