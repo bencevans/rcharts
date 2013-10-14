@@ -31,7 +31,7 @@
   "license": "MIT",
   "engines": {
     "node": "0.8.x",
-    "npm": "1.1.x"
+    "npm": "1.2.x"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
