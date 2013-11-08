@@ -69,7 +69,7 @@ requirejs(['backbone', 'jquery', 'underscore'], function (Backbone, $, _) {
 
   RCharts.Charts = Backbone.Collection.extend({
     model: RCharts.Chart,
-    url: '/subreddits'
+    url: '/subreddits.json'
   });
 
   RCharts.SidebarView = Backbone.View.extend({
