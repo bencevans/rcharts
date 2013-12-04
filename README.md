@@ -2,6 +2,10 @@
 
 Reddit generated music charts.
 
+[![Build Status](https://travis-ci.org/bencevans/rcharts.png?branch=master)](https://travis-ci.org/bencevans/rcharts)
+[![Coverage Status](https://coveralls.io/repos/bencevans/rcharts/badge.png?branch=master)](https://coveralls.io/r/bencevans/rcharts?branch=master)
+[![Dependency Status](https://david-dm.org/bencevans/rcharts.png)](https://david-dm.org/bencevans/rcharts)
+
 RCharts are available to listen to within [Tomahawk Player](http://www.tomahawk-player.org/).
 
 ## Installation
