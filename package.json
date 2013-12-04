@@ -15,7 +15,10 @@
     "async": "~0.2.9",
     "bower": "~1.2.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "istanbul": "~0.1.46"
+  },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
   },
