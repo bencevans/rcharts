@@ -1,3 +1,4 @@
+'use strict';
 
 var assert  = require('assert');
 var rcharts = require('../lib/rcharts');

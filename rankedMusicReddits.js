@@ -1,3 +1,4 @@
+'use strict';
 
 /**
  * Module Dependencies
@@ -20,9 +21,13 @@ request({
       url: 'http://reddit.com' + task + '/about.json',
       json: true
     }, function(err, res, body) {
-      if(err) throw err;
+      if(err) {
+        throw err;
+      }
 
-      if(typeof body === 'object') subreddits.push(body);
+      if(typeof body === 'object') {
+        subreddits.push(body);
+      }
       callback();
     });
 

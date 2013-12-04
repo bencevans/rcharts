@@ -17,10 +17,14 @@
   },
   "devDependencies": {
     "mocha": "~1.15.1",
-    "istanbul": "~0.1.46"
+    "istanbul": "~0.1.46",
+    "grunt": "~0.4.2",
+    "grunt-mocha-test": "~0.8.1",
+    "grunt-contrib-jshint": "~0.7.2"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "test": "./node_modules/.bin/mocha",
+    "postinstall": "./node_modules/.bin/bower install"
   },
   "repository": "",
   "keywords": [

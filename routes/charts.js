@@ -1,13 +1,14 @@
+'use strict';
 
 /**
  * Module Dependencies
  */
 
-var rcharts = require('../lib/rcharts'),
-    _ = require('underscore'),
-    libxml = require('libxmljs'),
-    async = require('async'),
-    soundcloud = require('../lib/soundcloud');
+var rcharts    = require('../lib/rcharts');
+var _          = require('underscore');
+var libxml     = require('libxmljs');
+var async      = require('async');
+var soundcloud = require('../lib/soundcloud');
 
 /**
  * Routes
@@ -18,8 +19,11 @@ var rcharts = require('../lib/rcharts'),
  */
 module.exports = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
-    if(err && err.message && err.message.match(/200/)) return next();
-    if(err) return next(err);
+    if(err && err.message && err.message.match(/200/)) {
+      return next();
+    } else if(err) {
+      return next(err);
+    }
     res.render('chart', {
       subreddit: req.params.subreddit,
       layout: false,
@@ -31,7 +35,7 @@ module.exports = function(req, res, next) {
 /**
  * GET /r/:subreddit.xml
  */
-module.exports.xml = function(req, res, next) {
+module.exports.xml = function(req, res) {
   res.redirect('/r/' + req.params.subreddit + '.xspf');
 };
 
@@ -42,7 +46,9 @@ module.exports.xspf = function(req, res, next) {
   res.type('text/xml;charset=UTF-8');
 
   rcharts(req.params.subreddit, function(err, results) {
-    if(err) return next(err);
+    if(err) {
+      return next(err);
+    }
 
     async.map(results, function(track, done) {
       if(track.url.match(/soundcloud/)) {
@@ -86,7 +92,9 @@ module.exports.xspf = function(req, res, next) {
  */
 module.exports.json = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
-    if(err) return next(err);
+    if(err) {
+      return next(err);
+    }
     res.jsonp({ id: req.params.subreddit, tracks: results});
   });
 };
@@ -96,7 +104,9 @@ module.exports.json = function(req, res, next) {
  */
 module.exports.jspf = function(req, res, next) {
   rcharts(req.params.subreddit, function(err, results) {
-    if(err) return next(err);
+    if(err) {
+      return next(err);
+    }
     res.send({
       playlist: {
         title: 'r/' + req.params.subreddit,

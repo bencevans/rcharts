@@ -1,3 +1,5 @@
+'use strict';
+
 require.config({
   shim: {
     'bootstrap': {
@@ -107,7 +109,7 @@ requirejs(['backbone', 'jquery', 'underscore'], function (Backbone, $, _) {
     });
   };
 
-  var app = RCharts.boot('.main', '.sidebar');
+  RCharts.boot('.main', '.sidebar');
   Backbone.history.start({
     pushState: true
   });
