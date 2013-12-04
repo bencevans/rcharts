@@ -1,3 +1,4 @@
 node_modules
 public/js/components
 coverage
+npm-debug.log
