@@ -25,7 +25,7 @@ module.exports = function(req, res, next) {
       return next(err);
     }
     res.render('chart', {
-      subreddit: req.params.subreddit,
+      name : req.params.subreddit,
       layout: false,
       results: results
     });

@@ -1,0 +1,26 @@
+!!! 5
+html
+  head
+    title {{subreddit.name}} Reddit Music Charts
+    link(rel="stylesheet", type="text/css", href="/css/style.css")
+  body
+    header
+      h1= 'r/' + locals.name
+      nav
+        li
+          a.btn(href='#') Open on Reddit
+        li
+          a.btn(href='#') Play in Tomahawk
+        li
+          a.btn(href='#') Play in Spotify
+        li
+          a.btn(href='#') Play in R.dio
+    #chartcontainer
+
+      - each track, index in locals.results
+        .chart-item
+          .artwork(style='background-image: url(\'/i/' + escape(track.artist) + '.png\')')
+          .info
+            .number= index + 1
+            a.info-track(href='#')= track.title
+            a.info-artist(href='#')= track.artist
