@@ -1,11 +1,3 @@
-/*
- * grunt-sequelize
- * https://github.com/webcast-io/grunt-sequelize
- *
- * Copyright (c) 2013 Ben Evans
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function(grunt) {
@@ -41,16 +33,17 @@ module.exports = function(grunt) {
 
   });
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
-
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-
+  grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('mocha', ['mochaTest']);
   grunt.registerTask('test', ['mocha']);
+
+  if(process.env.TEST_CMD) {
+    grunt.registerTask('travis', process.env.TEST_CMD);
+  }
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
