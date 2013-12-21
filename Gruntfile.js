@@ -1,11 +1,3 @@
-/*
- * grunt-sequelize
- * https://github.com/webcast-io/grunt-sequelize
- *
- * Copyright (c) 2013 Ben Evans
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function(grunt) {
