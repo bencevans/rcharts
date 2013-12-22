@@ -40,7 +40,7 @@ module.exports = function(req, res, next) {
     if(err) {
       return next(err);
     } else if(body && body.artist && body.artist.image && body.artist.image[2] && body.artist.image[2]['#text']) {
-      return res.redirect(body.artist.image[2]['#text']);
+      return res.redirect(body.artist.image[4]['#text']);
     }
     res.redirect('/img/genericart.png');
   });

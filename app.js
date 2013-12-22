@@ -8,12 +8,6 @@ var express    = require('express');
 var app        = express();
 var requireDir = require('requiredir');
 var routes     = requireDir('./routes');
-var hbs        = require('hbs');
-
-hbs.registerHelper('escape', function(data) {
-  return require('querystring').escape(data);
-});
-
 
 /**
  * Express Config
@@ -25,8 +19,7 @@ app.configure('development', function() {
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
-  app.engine('html', hbs.__express);
-  app.set('view engine', 'html');
+  app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -48,9 +41,7 @@ app.get('/r/:subreddit.json', routes.charts.json);
 app.get('/r/:subreddit.jspf', routes.charts.jspf);
 app.get('/r/:subreddit.xml', routes.charts.xml);
 app.get('/r/:subreddit.xspf', routes.charts.xspf);
-app.get('/r/:subreddit', function(req, res) {
-  res.sendfile('public/index.html');
-});
+app.get('/r/:subreddit', routes.charts);
 app.get(/^\/i\/(.+)\.png$/, routes.image);
 
 /**

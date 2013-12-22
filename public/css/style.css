@@ -1,0 +1,80 @@
+body {
+  font: 14px Verdana;
+  margin: 0;
+}
+.chart-item {
+  margin: 2px;
+  float: left;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.artwork {
+  width: 200px;
+  height: 150px;
+  background-image: url('http://userserve-ak.last.fm/serve/252/61553347.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+}
+.info {
+  position: relative;
+  height: 50px;
+  width: 200px;
+  color: #eee;
+  background-color: #111;
+}
+.number {
+  float:left;
+  height: 50px;
+  font-size: 40px;
+  line-height: 50px;
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 10px;
+}
+.info-track, .info-artist {
+  position: relative;
+  top: 7px;
+  display: block;
+  color: #eee;
+  text-decoration: none;
+}
+.info-track:hover, .info-artist:hover {
+  text-decoration: underline;
+}
+header {
+  height: 30px;
+  padding: 10px;
+  background-color: #111;
+  color: #fff;
+}
+h1 {
+  margin: 0;
+  width: 50%;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+}
+nav {
+  text-align: right;
+  list-style-type: none;
+  width: 50%;
+  margin: 0;
+  margin-top: 6px;
+  margin-left: 50%;
+  padding: 0;
+}
+nav li {
+  display: inline-block;
+}
+.btn {
+  background-color: #eee;
+  padding: 5px;
+  color: #111;
+  text-decoration: none;
+}
+.btn:hover {
+  background-color: #fff;
+}
