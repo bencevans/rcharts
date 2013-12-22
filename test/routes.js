@@ -35,4 +35,45 @@ describe('Routes', function() {
     });
   });
 
+  describe('/r/:subreddit.json', function() {
+    it('should return with a 200 status code', function(done) {
+      request('http://localhost:3000/r/Music.json', function(err, res) {
+        assert.equal(err, null);
+        assert.equal(res.statusCode, 200);
+        done();
+      });
+    });
+  });
+
+  describe('/r/:subreddit.jspf', function() {
+    it('should return with a 200 status code', function(done) {
+      request('http://localhost:3000/r/Music.jspf', function(err, res) {
+        assert.equal(err, null);
+        assert.equal(res.statusCode, 200);
+        done();
+      });
+    });
+  });
+
+  describe('/r/:subreddit.xml', function() {
+    it('should return with a 200 status code', function(done) {
+      request('http://localhost:3000/r/Music.xml', function(err, res) {
+        assert.equal(err, null);
+        assert.equal(res.statusCode, 200);
+        done();
+      });
+    });
+  });
+
+  describe('/r/:subreddit.xspf', function() {
+    it('should return with a 200 status code', function(done) {
+      request('http://localhost:3000/r/Music.xspf', function(err, res) {
+        assert.equal(err, null);
+        assert.equal(res.statusCode, 200);
+        done();
+      });
+    });
+  });
+
+
 });
