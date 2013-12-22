@@ -40,6 +40,11 @@ body {
   display: block;
   color: #eee;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
 }
 .info-track:hover, .info-artist:hover {
   text-decoration: underline;

@@ -22,5 +22,5 @@ html
           .artwork(style='background-image: url(\'/i/' + escape(track.artist) + '.png\')')
           .info
             .number= index + 1
-            a.info-track(href='#')= track.title
-            a.info-artist(href='#')= track.artist
+            a.info-track(href='#', title=track.title)= track.title
+            a.info-artist(href='#', title=track.artist)= track.artist
