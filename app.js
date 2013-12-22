@@ -8,12 +8,6 @@ var express    = require('express');
 var app        = express();
 var requireDir = require('requiredir');
 var routes     = requireDir('./routes');
-var hbs        = require('hbs');
-
-hbs.registerHelper('escape', function(data) {
-  return require('querystring').escape(data);
-});
-
 
 /**
  * Express Config
@@ -25,7 +19,6 @@ app.configure('development', function() {
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
-  app.engine('html', hbs.__express);
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(app.router);
