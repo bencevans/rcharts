@@ -27,7 +27,7 @@ describe('Routes', function() {
       request({
         url: 'http://localhost:3000/i/The xx.png',
         json: true
-      }, function(req, res, body) {
+      }, function(req, res) {
         assert.equal(res.statusCode, 200);
         assert.equal(res.headers['content-type'], 'image/png');
         done();
