@@ -1,8 +1,13 @@
 language: node_js
 services:
   - redis-server
+env:
+  - TEST_CMD="lint"
+  - TEST_CMD="mocha"
 node_js:
   - "0.10"
+script:
+  - grunt travis
 before_script:
   - npm install -g grunt-cli
 after_script:
