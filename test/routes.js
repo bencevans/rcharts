@@ -23,13 +23,13 @@ describe('Routes', function() {
   });
 
   describe('/i/:artist.png', function() {
-    it('should provide a PNG image', function(done) {
+    it('should provide a PNG(or JPG :\\) image', function(done) {
       request({
         url: 'http://localhost:3000/i/The xx.png',
         json: true
       }, function(req, res) {
         assert.equal(res.statusCode, 200);
-        assert.equal(res.headers['content-type'], 'image/png');
+        assert.ok(res.headers['content-type'].match(/^image\/.+/));
         done();
       });
     });
