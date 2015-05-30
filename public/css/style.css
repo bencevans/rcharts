@@ -1,17 +1,17 @@
 body {
-  font: 14px Verdana;
+  font: 14px Ubuntu;
   margin: 0;
 }
 .chart-item {
   margin: 2px;
   float: left;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   overflow: hidden;
 }
 .artwork {
-  width: 200px;
-  height: 150px;
+  width: 250px;
+  height: 200px;
   background-image: url('http://userserve-ak.last.fm/serve/252/61553347.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,7 +20,7 @@ body {
 .info {
   position: relative;
   height: 50px;
-  width: 200px;
+  width: 250px;
   color: #eee;
   background-color: #111;
 }
@@ -50,7 +50,7 @@ body {
   text-decoration: underline;
 }
 header {
-  height: 30px;
+  height: 50px;
   padding: 10px;
   background-color: #111;
   color: #fff;
