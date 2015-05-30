@@ -9,6 +9,7 @@ var _          = require('underscore');
 var libxml     = require('libxmljs');
 var async      = require('async');
 var soundcloud = require('../lib/soundcloud');
+var subreddits = require('../public/subreddits.json')
 
 /**
  * Routes
@@ -27,7 +28,8 @@ module.exports = function(req, res, next) {
     res.render('chart', {
       name : req.params.subreddit,
       layout: false,
-      results: results
+      results: results,
+      subreddits: subreddits
     });
   });
 };

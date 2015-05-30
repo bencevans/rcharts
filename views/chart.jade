@@ -1,20 +1,23 @@
 !!! 5
 html
   head
-    title= 'r/' + locals.name + 'charts'
+    title= '/r/' + locals.name + ' Charts'
     link(rel="stylesheet", type="text/css", href="/css/style.css")
   body
+    div.submenu
+      ul
+        - each subreddit in locals.subreddits
+          li
+            a(href='/r/' + subreddit)= subreddit
+        li
+          a(href='#') Jazz
     header
-      h1= 'r/' + locals.name
+      h1= '/r/' + locals.name
       nav
         li
-          a.btn(href='#') Open on Reddit
+          a.btn(href='https://reddit.com/r/' + locals.name) Open on Reddit
         li
-          a.btn(href='#') Play in Tomahawk
-        li
-          a.btn(href='#') Play in Spotify
-        li
-          a.btn(href='#') Play in R.dio
+          a.btn(href='tomahawk://open/playlist/?xspf=http://localhost:3000/r/' + locals.name + '.xspf') Play in Tomahawk
     #chartcontainer
 
       - each track, index in locals.results

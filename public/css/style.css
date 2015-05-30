@@ -50,8 +50,8 @@ body {
   text-decoration: underline;
 }
 header {
-  height: 50px;
-  padding: 10px;
+  height: 30px;
+  padding: 20px;
   background-color: #111;
   color: #fff;
 }
@@ -82,4 +82,35 @@ nav li {
 }
 .btn:hover {
   background-color: #fff;
+}
+
+
+
+
+
+.submenu {
+  padding: 0;
+  background-color: #fff;
+  float: left;
+  margin-top: 70px;
+}
+
+.submenu ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.submenu ul li {
+  display: block;
+}
+
+.submenu a {
+  padding: 10px 20px;
+  display: block;
+  color: #000;
+}
+
+.submenu ul li:nth-of-type(even) a {
+  background-color: #eee;
 }
