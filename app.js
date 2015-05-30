@@ -19,18 +19,15 @@ hbs.registerHelper('escape', function(data) {
  * Express Config
  */
 
-app.configure('development', function() {
-  app.use(express.logger('dev'));
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.use(require('morgan')('dev'));
+}
 
-app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.engine('html', hbs.__express);
-  app.set('view engine', 'html');
-  app.use(express.bodyParser());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+app.set('views', __dirname + '/views');
+app.engine('html', hbs.__express);
+app.set('view engine', 'html');
+// app.use(require('body-parser')());
+
 
 /**
  * Routes
@@ -49,9 +46,11 @@ app.get('/r/:subreddit.jspf', routes.charts.jspf);
 app.get('/r/:subreddit.xml', routes.charts.xml);
 app.get('/r/:subreddit.xspf', routes.charts.xspf);
 app.get('/r/:subreddit', function(req, res) {
-  res.sendfile('public/index.html');
+  res.sendFile('public/index.html');
 });
 app.get(/^\/i\/(.+)\.png$/, routes.image);
+
+app.use(express.static(__dirname + '/public'));
 
 /**
  * Listen Up
