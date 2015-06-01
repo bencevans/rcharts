@@ -42,13 +42,15 @@ describe('lib/rcharts & lib/resolvers/*', function() {
       it('should return false', function(done) {
         rcharts.parseTrack({
           domain: 'youtube.com',
-          title:  'Newton Faulkner - Clouds '
+          title:  'Newton Faulkner - Clouds ',
+          url: 'http://youtube.com/watch?v=12e2qfdwad'
         }, function(err, track) {
           assert.strictEqual(err, null);
           assert.deepEqual(track,  {
             title: 'Clouds',
             artist: 'Newton Faulkner',
-            source: 'YouTube'
+            source: 'YouTube',
+            url: 'http://youtube.com/watch?v=12e2qfdwad'
           });
           done();
         });
