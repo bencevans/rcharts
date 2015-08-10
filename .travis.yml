@@ -5,7 +5,7 @@ env:
   - TEST_CMD="test"
   - TEST_CMD="mocha"
 node_js:
-  - "0.10"
+  - "0.12"
 script:
   - npm run $TEST_CMD
 before_script:
