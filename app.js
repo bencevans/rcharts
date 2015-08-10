@@ -1,14 +1,12 @@
-'use strict';
-
 /**
  * Dependencies
  */
 
-var express    = require('express');
-var app        = express();
-var requireDir = require('requiredir');
-var routes     = requireDir('./routes');
-var morgan     = require('morgan')
+var express = require('express')
+var app = express()
+var requireDir = require('requiredir')
+var routes = requireDir('./routes')
+var morgan = require('morgan')
 var bodyParser = require('body-parser')
 
 /**
@@ -16,36 +14,36 @@ var bodyParser = require('body-parser')
  */
 
 if (!process.env.NODE_ENV) {
-  app.use(morgan('dev'));
+  app.use(morgan('dev'))
 }
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(bodyParser());
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jade')
+app.use(bodyParser())
 
 /**
  * Routes
  */
 
-app.get('/', function(req, res) {
-  res.redirect('/r/Music');
-});
+app.get('/', function (req, res) {
+  res.redirect('/r/Music')
+})
 
-app.post('/', function(req, res) {
-  res.redirect('/r/' + req.body.subreddit);
-});
+app.post('/', function (req, res) {
+  res.redirect('/r/' + req.body.subreddit)
+})
 
-app.get('/r/:subreddit.json', routes.charts.json);
-app.get('/r/:subreddit.jspf', routes.charts.jspf);
-app.get('/r/:subreddit.xml', routes.charts.xml);
-app.get('/r/:subreddit.xspf', routes.charts.xspf);
-app.get('/r/:subreddit', routes.charts);
-app.get(/^\/i\/(.+)\.png$/, routes.image);
+app.get('/r/:subreddit.json', routes.charts.json)
+app.get('/r/:subreddit.jspf', routes.charts.jspf)
+app.get('/r/:subreddit.xml', routes.charts.xml)
+app.get('/r/:subreddit.xspf', routes.charts.xspf)
+app.get('/r/:subreddit', routes.charts)
+app.get(/^\/i\/(.+)\.png$/, routes.image)
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 
 /**
  * Listen Up
  */
 
-require('http').createServer(app).listen(process.env.PORT || 3000);
+require('http').createServer(app).listen(process.env.PORT || 3000)
