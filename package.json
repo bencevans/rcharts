@@ -40,7 +40,7 @@
   "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
   "license": "MIT",
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.2.x"
+    "node": "0.12.x",
+    "npm": "2.x"
   }
 }
