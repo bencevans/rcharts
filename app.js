@@ -19,7 +19,7 @@ if (!process.env.NODE_ENV) {
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
-app.use(bodyParser())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 /**
  * Routes
