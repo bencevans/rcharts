@@ -13,7 +13,7 @@ describe('lib/rcharts & lib/resolvers/*', function () {
       })
     })
 
-    describe('with a domain that does match a resolver', function () {
+    describe('with a domain that does match a resolver', function  () {
       it('should return a resolver with a name, domains & parseTrack attribute', function () {
         var resolver = rcharts.getResolverByDomain('youtube.com')
         assert.ok(resolver.name)
@@ -48,7 +48,8 @@ describe('lib/rcharts & lib/resolvers/*', function () {
           assert.deepEqual(track, {
             title: 'Clouds',
             artist: 'Newton Faulkner',
-            source: 'YouTube'
+            source: 'YouTube',
+            url: undefined
           })
           done()
         })
