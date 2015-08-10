@@ -2,13 +2,14 @@ language: node_js
 services:
   - redis-server
 env:
+  - TEST_CMD="test"
   - TEST_CMD="lint"
-  - TEST_CMD="mocha"
 node_js:
-  - "0.10"
+  - "0.12"
 script:
-  - grunt travis
+  - npm run $TEST_CMD
 before_script:
   - npm install -g grunt-cli
 after_script:
-  - - if [ "$TEST_CMD" = 'mocha' ]; then npm run coveralls; fi
+  - if [ "$TEST_CMD" = 'test' ]; then npm run coveralls; fi
+sudo: false

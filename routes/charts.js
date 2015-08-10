@@ -1,14 +1,13 @@
-'use strict';
-
 /**
  * Module Dependencies
  */
 
-var rcharts    = require('../lib/rcharts');
-var _          = require('underscore');
-var libxml     = require('libxmljs');
-var async      = require('async');
-var soundcloud = require('../lib/soundcloud');
+var rcharts = require('../lib/rcharts')
+var _ = require('underscore')
+var libxml = require('libxmljs')
+var async = require('async')
+var soundcloud = require('../lib/soundcloud')
+var subreddits = require('../public/subreddits.json')
 
 /**
  * Routes
@@ -17,106 +16,107 @@ var soundcloud = require('../lib/soundcloud');
 /**
  * GET /r/:subreddit
  */
-module.exports = function(req, res, next) {
-  rcharts(req.params.subreddit, function(err, results) {
-    if(err && err.message && err.message.match(/200/)) {
-      return next();
-    } else if(err) {
-      return next(err);
+module.exports = function (req, res, next) {
+  rcharts(req.params.subreddit, function (err, results) {
+    if (err && err.message && err.message.match(/200/)) {
+      return next()
+    } else if (err) {
+      return next(err)
     }
     res.render('chart', {
-      subreddit: req.params.subreddit,
+      name: req.params.subreddit,
       layout: false,
-      results: results
-    });
-  });
-};
+      results: results,
+      subreddits: subreddits
+    })
+  })
+}
 
 /**
  * GET /r/:subreddit.xml
  */
-module.exports.xml = function(req, res) {
-  res.redirect('/r/' + req.params.subreddit + '.xspf');
-};
+module.exports.xml = function (req, res) {
+  res.redirect('/r/' + req.params.subreddit + '.xspf')
+}
 
 /**
  * GET /r/:subreddit.xspf
  */
-module.exports.xspf = function(req, res, next) {
-  res.type('text/xml;charset=UTF-8');
+module.exports.xspf = function (req, res, next) {
+  res.type('text/xml;charset=UTF-8')
 
-  rcharts(req.params.subreddit, function(err, results) {
-    if(err) {
-      return next(err);
+  rcharts(req.params.subreddit, function (err, results) {
+    if (err) {
+      return next(err)
     }
 
-    async.map(results, function(track, done) {
-      if(track.url.match(/soundcloud/)) {
-        soundcloud.resolveStreamURL(track.url, function(err, location) {
-          track.location = location;
-          done();
-        });
+    async.map(results, function (track, done) {
+      if (track.url.match(/soundcloud/)) {
+        soundcloud.resolveStreamURL(track.url, function (err, location) {
+          track.location = location
+          done()
+        })
       } else {
-        done();
+        done()
       }
-    }, function() {
+    }, function () {
 
-      var doc = new libxml.Document();
-      var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/'})
+      var doc = new libxml.Document()
+      var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/' })
       .node('title', 'r/' + req.params.subreddit)
       .parent()
-      .node('trackList');
+      .node('trackList')
 
       for (var i = 0; i < results.length; i++) {
         curser.node('track')
         .node('creator', results[i].artist)
         .parent()
-        .node('title', results[i].title);
-        curser.parent();
+        .node('title', results[i].title)
+        curser.parent()
 
-        if(results[i].location) {
+        if (results[i].location) {
           curser.node('location', results[i].location)
-          .parent();
+          .parent()
         }
 
-        curser.parent();
+        curser.parent()
       }
 
-      res.send(doc.toString());
-    });
-  });
-};
+      res.send(doc.toString())
+    })
+  })
+}
 
 /**
  * GET /r/:subreddit.json
  */
-module.exports.json = function(req, res, next) {
-  rcharts(req.params.subreddit, function(err, results) {
-    if(err) {
-      return next(err);
+module.exports.json = function (req, res, next) {
+  rcharts(req.params.subreddit, function (err, results) {
+    if (err) {
+      return next(err)
     }
-    res.jsonp({ id: req.params.subreddit, tracks: results});
-  });
-};
+    res.jsonp({ id: req.params.subreddit, tracks: results })
+  })
+}
 
 /**
  * GET /r/:subreddit.jspf
  */
-module.exports.jspf = function(req, res, next) {
-  rcharts(req.params.subreddit, function(err, results) {
-    if(err) {
-      return next(err);
+module.exports.jspf = function (req, res, next) {
+  rcharts(req.params.subreddit, function (err, results) {
+    if (err) {
+      return next(err)
     }
     res.send({
       playlist: {
         title: 'r/' + req.params.subreddit,
-        track: [_.map(results, function(t) {
+        track: [_.map(results, function (t) {
           return {
             title: t.title,
-            creator: t.artist,
-          };
+            creator: t.artist
+          }
         })]
       }
-    });
-  });
-};
+    })
+  })
+}

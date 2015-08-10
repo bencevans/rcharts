@@ -4,27 +4,28 @@
   "description": "Reddit Music Charts",
   "main": "app.js",
   "dependencies": {
-    "request": "~2.29.0",
-    "redis": "~0.9.0",
-    "express": "~3.4.4",
-    "underscore": "~1.5.2",
+    "async": "^1.4.0",
+    "body-parser": "^1.13.3",
+    "bower": "^1.4.1",
     "cachey": "~0.3.2",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "libxmljs": "^0.14.2",
+    "morgan": "^1.6.1",
+    "redis": "^0.12.1",
+    "request": "^2.60.0",
     "requiredir": "~1.0.6",
-    "hbs": "~2.4.0",
-    "libxmljs": "~0.8.1",
-    "async": "~0.2.9",
-    "bower": "~1.2.7"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "mocha": "~1.15.1",
+    "coveralls": "~2.5.0",
     "istanbul": "~0.1.46",
-    "grunt": "~0.4.2",
-    "grunt-mocha-test": "~0.8.1",
-    "grunt-contrib-jshint": "~0.7.2",
-    "coveralls": "~2.5.0"
+    "mocha": "~1.15.1",
+    "standard": "^5.0.2"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
+    "lint": "standard",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
     "postinstall": "./node_modules/.bin/bower install"
   },
