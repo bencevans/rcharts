@@ -1,14 +1,11 @@
-/**
- * Dependencies
- */
+import * as path from 'path';
+import * as express from 'express';
+import * as requireDir from 'requiredir';
+import * as morgan from 'morgan';
+import * as bodyParser from 'body-parser';
 
-var path = require('path')
-var express = require('express')
-var app = express()
-var requireDir = require('requiredir')
-var routes = requireDir('./routes')
-var morgan = require('morgan')
-var bodyParser = require('body-parser')
+const routes = requireDir('./routes');
+const app = express();
 
 /**
  * Express Config
@@ -18,7 +15,7 @@ if (!process.env.NODE_ENV) {
   app.use(morgan('dev'))
 }
 
-app.set('views', path.resolve(__dirname, '/views'))
+app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'jade')
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -41,7 +38,7 @@ app.get('/r/:subreddit.xspf', routes.charts.xspf)
 app.get('/r/:subreddit', routes.charts)
 app.get(/^\/i\/(.+)\.png$/, routes.image)
 
-app.use(express.static(path.resolve(__dirname, '/public')))
+app.use(express.static(path.resolve(__dirname, 'public')))
 
 /**
  * Listen Up

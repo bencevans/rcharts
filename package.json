@@ -17,14 +17,18 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/morgan": "^1.7.35",
     "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.5",
-    "standard": "^11.0.1"
+    "standard": "^11.0.1",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.8.1"
   },
   "scripts": {
-    "start": "node app.js",
-    "test": "./node_modules/.bin/mocha src/test/*.js --exit",
+    "start": "ts-node src/app.ts",
+    "test": "./node_modules/.bin/mocha -r ts-node/register src/test/*.ts --exit",
     "lint": "standard",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage"
   },
@@ -37,9 +41,5 @@
     "charts"
   ],
   "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
-  "license": "MIT",
-  "engines": {
-    "node": "0.12.x",
-    "npm": "2.x"
-  }
+  "license": "MIT"
 }
