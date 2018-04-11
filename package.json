@@ -27,7 +27,7 @@
     "start": "node app.js",
     "test": "./node_modules/.bin/mocha src/test/*.js --exit",
     "lint": "standard",
-    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
+    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
     "postinstall": "./node_modules/.bin/bower install"
   },
   "repository": "",
