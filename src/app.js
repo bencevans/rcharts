@@ -2,6 +2,7 @@
  * Dependencies
  */
 
+var path = require('path')
 var express = require('express')
 var app = express()
 var requireDir = require('requiredir')
@@ -17,7 +18,7 @@ if (!process.env.NODE_ENV) {
   app.use(morgan('dev'))
 }
 
-app.set('views', __dirname + '/views')
+app.set('views', path.resolve(__dirname, '/views'))
 app.set('view engine', 'jade')
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -40,7 +41,7 @@ app.get('/r/:subreddit.xspf', routes.charts.xspf)
 app.get('/r/:subreddit', routes.charts)
 app.get(/^\/i\/(.+)\.png$/, routes.image)
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(path.resolve(__dirname, '/public')))
 
 /**
  * Listen Up

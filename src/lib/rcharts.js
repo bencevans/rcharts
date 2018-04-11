@@ -48,7 +48,6 @@ var parseTracks = function (tracks, callback) {
  */
 module.exports = function (subreddit, callback) {
   cachey.cache(subreddit, 60 * 60, function (callback) {
-
     request({
       uri: 'https://www.reddit.com/r/' + subreddit + '.json',
       json: true,
@@ -82,7 +81,6 @@ module.exports = function (subreddit, callback) {
       })
 
       callback(null, tracks)
-
     })
   })
 }

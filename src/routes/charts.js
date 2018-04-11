@@ -53,6 +53,9 @@ module.exports.xspf = function (req, res, next) {
     async.map(results, function (track, done) {
       if (track.url.match(/soundcloud/)) {
         soundcloud.resolveStreamURL(track.url, function (err, location) {
+          if (err) {
+            return next(err)
+          }
           track.location = location
           done()
         })
@@ -60,23 +63,22 @@ module.exports.xspf = function (req, res, next) {
         done()
       }
     }, function () {
-
       var doc = new libxml.Document()
       var curser = doc.node('playlist').attr({ version: 1, xmlns: 'http://xspf.org/ns/0/' })
-      .node('title', 'r/' + req.params.subreddit)
-      .parent()
-      .node('trackList')
+        .node('title', 'r/' + req.params.subreddit)
+        .parent()
+        .node('trackList')
 
       for (var i = 0; i < results.length; i++) {
         curser.node('track')
-        .node('creator', results[i].artist)
-        .parent()
-        .node('title', results[i].title)
+          .node('creator', results[i].artist)
+          .parent()
+          .node('title', results[i].title)
         curser.parent()
 
         if (results[i].location) {
           curser.node('location', results[i].location)
-          .parent()
+            .parent()
         }
 
         curser.parent()

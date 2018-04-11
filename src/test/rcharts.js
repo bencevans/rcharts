@@ -4,9 +4,7 @@ var assert = require('assert')
 var rcharts = require('../lib/rcharts')
 
 describe('lib/rcharts & lib/resolvers/*', function () {
-
   describe('#getResolverByDomain()', function () {
-
     describe('with no resolvers that domain match', function () {
       it('should return false', function () {
         assert.strictEqual(rcharts.getResolverByDomain('nodomainhere.com'), false)
@@ -21,11 +19,9 @@ describe('lib/rcharts & lib/resolvers/*', function () {
         assert.ok(resolver.parseTrack)
       })
     })
-
   })
 
   describe('#parseTrack()', function () {
-
     describe('with a track that doesn\'t match any resolvers', function () {
       it('should return false', function (done) {
         rcharts.parseTrack({
@@ -55,7 +51,6 @@ describe('lib/rcharts & lib/resolvers/*', function () {
         })
       })
     })
-
   })
 
   describe('#parseTracks()', function () {
@@ -65,5 +60,4 @@ describe('lib/rcharts & lib/resolvers/*', function () {
   describe('#()', function () {
 
   })
-
 })

@@ -31,7 +31,6 @@ request({
       }
       callback()
     })
-
   }, 9)
 
   q.drain = function () {
@@ -51,5 +50,4 @@ request({
   _.each(body, function (item) {
     q.push(item)
   })
-
 })

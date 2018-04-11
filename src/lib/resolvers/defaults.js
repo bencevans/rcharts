@@ -1,14 +1,11 @@
 var _ = require('underscore')
 
 var DefaultResolver = function () {
-
   return this
-
 }
 
 DefaultResolver.prototype.parseTrack = function (track, callback) {
-
-  var match = track.title.match(/(.+) - (.+)[(|\.]?/)
+  var match = track.title.match(/(.+) - (.+)[(|.]?/)
 
   if (!match) {
     return callback(null, false)
@@ -20,7 +17,6 @@ DefaultResolver.prototype.parseTrack = function (track, callback) {
     source: this.name,
     url: track.url
   })
-
 }
 
 module.exports = DefaultResolver
