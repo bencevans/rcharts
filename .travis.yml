@@ -5,7 +5,7 @@ env:
   - TEST_CMD="test"
   - TEST_CMD="lint"
 node_js:
-  - "0.12"
+  - 8
 script:
   - npm run $TEST_CMD
 before_script:
