@@ -6,7 +6,6 @@
   "dependencies": {
     "async": "^2.6.0",
     "body-parser": "^1.13.3",
-    "bower": "^1.4.1",
     "cachey": "~0.3.2",
     "express": "^4.13.3",
     "jade": "^1.11.0",
@@ -27,8 +26,7 @@
     "start": "node app.js",
     "test": "./node_modules/.bin/mocha src/test/*.js --exit",
     "lint": "standard",
-    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
-    "postinstall": "./node_modules/.bin/bower install"
+    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage"
   },
   "repository": "",
   "keywords": [
